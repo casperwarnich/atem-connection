@@ -1,6 +1,6 @@
 {
   "name": "atem-connection",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Typescript Node.js library for connecting with an ATEM switcher.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -44,9 +44,6 @@
     "validate:dependencies": "yarn audit --groups dependencies && yarn license-validate",
     "validate:dev-dependencies": "yarn audit --groups devDependencies",
     "license-validate": "yarn sofie-licensecheck --allowPackages caniuse-lite@1.0.30001319"
-  },
-  "engines": {
-    "node": "^14.18 || ^16.14"
   },
   "files": [
     "/dist",
