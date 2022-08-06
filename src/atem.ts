@@ -288,6 +288,63 @@ export class Atem extends BasicAtem {
 		}
 	}
 
+	// Cameracontrol:
+	setIris(cameraId: number, percent: number) {
+		const command = new Commands.CameraControlIrisCommand(cameraId, percent)
+		return this.sendCommand(command)
+	}
+	setGain(cameraId: number, gainDb: 0 | 6 | 12 | 18) {
+		const command = new Commands.CameraControlGainCommand(cameraId, gainDb)
+
+		//Fallback to legacy gain:
+		switch (gainDb) {
+			case 0:
+				this.setGainLegacy(cameraId, 2)
+				break
+			case 6:
+				this.setGainLegacy(cameraId, 4)
+				break
+			case 12:
+				this.setGainLegacy(cameraId, 8)
+				break
+			case 18:
+				this.setGainLegacy(cameraId, 10)
+				break
+			default:
+				break
+		}
+		return this.sendCommand(command)
+	}
+	setGainLegacy(cameraId: number, value: number) {
+		const command = new Commands.CameraControlGainLegacyCommand(cameraId, value)
+		return this.sendCommand(command)
+	}
+	setZoom(cameraId: number, speedNegative1ToPositive1: number) {
+		const command = new Commands.CameraControlZoomCommand(cameraId, speedNegative1ToPositive1)
+		return this.sendCommand(command)
+	}
+	setPTZ(cameraId: number, panSpeedNegative1ToPositive1: number, tiltSpeedNegative1ToPositive1: number) {
+		const command = new Commands.CameraControlPTZCommand(
+			cameraId,
+			panSpeedNegative1ToPositive1,
+			tiltSpeedNegative1ToPositive1
+		)
+		return this.sendCommand(command)
+	}
+	setFocus(cameraId: number, incrementPercent: number) {
+		const command = new Commands.CameraControlFocusCommand(cameraId, incrementPercent)
+		return this.sendCommand(command)
+	}
+	setAutoFocus(cameraId: number) {
+		const command = new Commands.CameraControlAutoFocusCommand(cameraId)
+		return this.sendCommand(command)
+	}
+	setWhitebalance(cameraId: number, kelvin: number) {
+		const command = new Commands.CameraControlWhitebalanceCommand(cameraId, kelvin)
+		return this.sendCommand(command)
+	}
+	//
+
 	public async changeProgramInput(input: number, me = 0): Promise<void> {
 		const command = new Commands.ProgramInputCommand(me, input)
 		return this.sendCommand(command)

@@ -22,4 +22,5 @@ const tslib_1 = require("tslib");
 (0, tslib_1.__exportStar)(require("./StartupStateCommand"), exports);
 (0, tslib_1.__exportStar)(require("./TallyBySourceCommand"), exports);
 (0, tslib_1.__exportStar)(require("./TimeCommand"), exports);
+(0, tslib_1.__exportStar)(require("./Camera"), exports);
 //# sourceMappingURL=index.js.map

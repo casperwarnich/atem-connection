@@ -196,6 +196,57 @@ class Atem extends BasicAtem {
             (0, tslib_1.__classPrivateFieldSet)(this, _Atem_multiviewerFontScale, 1.0, "f");
         }
     }
+    // Cameracontrol:
+    setIris(cameraId, percent) {
+        const command = new Commands.CameraControlIrisCommand(cameraId, percent);
+        return this.sendCommand(command);
+    }
+    setGain(cameraId, gainDb) {
+        const command = new Commands.CameraControlGainCommand(cameraId, gainDb);
+        //Fallback to legacy gain:
+        switch (gainDb) {
+            case 0:
+                this.setGainLegacy(cameraId, 2);
+                break;
+            case 6:
+                this.setGainLegacy(cameraId, 4);
+                break;
+            case 12:
+                this.setGainLegacy(cameraId, 8);
+                break;
+            case 18:
+                this.setGainLegacy(cameraId, 10);
+                break;
+            default:
+                break;
+        }
+        return this.sendCommand(command);
+    }
+    setGainLegacy(cameraId, value) {
+        const command = new Commands.CameraControlGainLegacyCommand(cameraId, value);
+        return this.sendCommand(command);
+    }
+    setZoom(cameraId, speedNegative1ToPositive1) {
+        const command = new Commands.CameraControlZoomCommand(cameraId, speedNegative1ToPositive1);
+        return this.sendCommand(command);
+    }
+    setPTZ(cameraId, panSpeedNegative1ToPositive1, tiltSpeedNegative1ToPositive1) {
+        const command = new Commands.CameraControlPTZCommand(cameraId, panSpeedNegative1ToPositive1, tiltSpeedNegative1ToPositive1);
+        return this.sendCommand(command);
+    }
+    setFocus(cameraId, incrementPercent) {
+        const command = new Commands.CameraControlFocusCommand(cameraId, incrementPercent);
+        return this.sendCommand(command);
+    }
+    setAutoFocus(cameraId) {
+        const command = new Commands.CameraControlAutoFocusCommand(cameraId);
+        return this.sendCommand(command);
+    }
+    setWhitebalance(cameraId, kelvin) {
+        const command = new Commands.CameraControlWhitebalanceCommand(cameraId, kelvin);
+        return this.sendCommand(command);
+    }
+    //
     async changeProgramInput(input, me = 0) {
         const command = new Commands.ProgramInputCommand(me, input);
         return this.sendCommand(command);

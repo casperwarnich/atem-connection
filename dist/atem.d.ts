@@ -72,6 +72,14 @@ export declare class Atem extends BasicAtem {
      * Set the scale factor for the multiviewer text. Default is 1
      */
     setMultiviewerFontScale(scale: number | null): void;
+    setIris(cameraId: number, percent: number): Promise<void>;
+    setGain(cameraId: number, gainDb: 0 | 6 | 12 | 18): Promise<void>;
+    setGainLegacy(cameraId: number, value: number): Promise<void>;
+    setZoom(cameraId: number, speedNegative1ToPositive1: number): Promise<void>;
+    setPTZ(cameraId: number, panSpeedNegative1ToPositive1: number, tiltSpeedNegative1ToPositive1: number): Promise<void>;
+    setFocus(cameraId: number, incrementPercent: number): Promise<void>;
+    setAutoFocus(cameraId: number): Promise<void>;
+    setWhitebalance(cameraId: number, kelvin: number): Promise<void>;
     changeProgramInput(input: number, me?: number): Promise<void>;
     changePreviewInput(input: number, me?: number): Promise<void>;
     cut(me?: number): Promise<void>;

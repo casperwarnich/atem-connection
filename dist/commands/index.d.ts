@@ -19,4 +19,5 @@ export * from './PowerStatusCommand';
 export * from './StartupStateCommand';
 export * from './TallyBySourceCommand';
 export * from './TimeCommand';
+export * from './Camera';
 //# sourceMappingURL=index.d.ts.map
